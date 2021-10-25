@@ -5,8 +5,22 @@ import java.io.ObjectInputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+/**
+ * Class: GeneratePassword
+ * @author Nan Zhou
+ * @version 1.0
+ * Description: this program reads in a binary file of TestSubject objects and use their attributes to generate passwords
+ */
+
 public class GeneratePassword {
 
+    /**
+     * Reads in a binary file containing TestSubject objects
+     * @param file
+     * @return ArrayList of TestSubjects
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public static ArrayList<TestSubject> readTestSubjects(String file) throws IOException, ClassNotFoundException {
         ArrayList<TestSubject> list = new ArrayList<>();
         ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(file));
@@ -22,6 +36,11 @@ public class GeneratePassword {
         return list;
     }
 
+    /**
+     * Takes an ArrayList of TestSubjects and use their attributes to create passwords
+     * @param list
+     * @return ArrayList of passwords
+     */
     public static ArrayList<String> createPasswords(ArrayList<TestSubject> list) {
         ArrayList<String> passwords = new ArrayList<>();
         for (TestSubject testSubject : list) {
@@ -38,6 +57,11 @@ public class GeneratePassword {
         return passwords;
     }
 
+    /**
+     * Takes in an ArrayList of passwords and write to a text file
+     * @param passwords
+     * @throws IOException
+     */
     public static void write(ArrayList<String> passwords) throws IOException {
         PrintWriter printWriter = new PrintWriter("TestSubjectPasswords.txt");
         for (String password : passwords) {
@@ -46,6 +70,12 @@ public class GeneratePassword {
         printWriter.close();
     }
 
+    /**
+     * Main method - starting point of program
+     * @param args
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         ArrayList<String> pwd = createPasswords(readTestSubjects("TestSubjects.bin"));
         write(pwd);
