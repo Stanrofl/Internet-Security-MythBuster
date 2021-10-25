@@ -76,8 +76,12 @@ public class GeneratePassword {
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
-        ArrayList<String> pwd = createPasswords(readTestSubjects("TestSubjects.bin"));
-        write(pwd);
+    public static void main(String[] args) {
+        try {
+            ArrayList<String> pwd = createPasswords(readTestSubjects("TestSubjects.bin"));
+            write(pwd);
+        } catch (IOException | ClassNotFoundException exception) {
+            exception.getMessage();
+        }
     }
 }

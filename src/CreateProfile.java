@@ -124,8 +124,12 @@ public class CreateProfile {
      * @param args
      * @throws IOException
      */
-    public static void main(String[] args) throws IOException {
-        ArrayList<TestSubject> list = createProfile(createName(readFirstName("fnames.txt"),readLastName("lnames.txt")));
-        write(list);
+    public static void main(String[] args) {
+        try {
+            ArrayList<TestSubject> list = createProfile(createName(readFirstName("fnames.txt"),readLastName("lnames.txt")));
+            write(list);
+        } catch (IOException exception) {
+            exception.getMessage();
+        }
     }
 }
