@@ -91,6 +91,48 @@ public class CreateProfile {
     }
 
     /**
+     * Add attributes to test subjects in an ArrayList by specifying the attribute
+     * @param testSubjects
+     * @param attribute
+     * @param attributes
+     */
+    public static void addAttribute(ArrayList<TestSubject> testSubjects,String attribute,ArrayList<String> attributes) {
+        Random random = new Random();
+        switch (attribute) {
+            case "city":
+                for (TestSubject testSubject : testSubjects) {
+                    int index = random.nextInt(attributes.size());
+                    testSubject.setCity(attributes.get(index));
+                }
+                break;
+            case "movie":
+                for (TestSubject testSubject : testSubjects) {
+                    int index = random.nextInt(testSubjects.size());
+                    testSubject.setMovie(attributes.get(index));
+                }
+                break;
+            case "fictional_name":
+                for (TestSubject testSubject : testSubjects) {
+                    int index = random.nextInt(testSubjects.size());
+                    testSubject.setCharacter(attributes.get(index));
+                }
+                break;
+            case "pet_name":
+                for (TestSubject testSubject : testSubjects) {
+                    int index = random.nextInt(testSubjects.size());
+                    testSubject.setPetName(attributes.get(index));
+                }
+                break;
+            case "sports_team":
+                for (TestSubject testSubject : testSubjects) {
+                    int index = random.nextInt(testSubjects.size());
+                    testSubject.setTeam(attributes.get(index));
+                }
+                break;
+        }
+    }
+
+    /**
      * Reads in an ArrayList of TestSubjects and write to a binary file
      * @param list
      * @throws IOException
@@ -118,6 +160,7 @@ public class CreateProfile {
             ArrayList<String> petNames = readFile("pet_name.txt");
             ArrayList<String> cities = readFile("city.txt");
             ArrayList<TestSubject> list = createProfile(createName(firstNames,lastNames));
+            addAttribute(list,"city",cities);
             write(list);
         } catch (IOException exception) {
             exception.printStackTrace();
