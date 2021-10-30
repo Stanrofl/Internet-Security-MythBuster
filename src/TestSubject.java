@@ -168,6 +168,11 @@ public class TestSubject implements Serializable {
         return "TestSubject{" +
                 "name='" + name + '\'' +
                 ", DoB='" + DoB + '\'' +
+                ", petName='" + petName + '\'' +
+                ", movie='" + movie + '\'' +
+                ", character='" + character + '\'' +
+                ", city='" + city + '\'' +
+                ", team='" + team + '\'' +
                 '}';
     }
 }
