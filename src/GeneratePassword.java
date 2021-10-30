@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Class: GeneratePassword
@@ -20,7 +21,6 @@ public class GeneratePassword {
     /**
      * Reads in a binary file containing TestSubject objects
      * @param file
-     * @return ArrayList of TestSubjects
      * @throws IOException
      * @throws ClassNotFoundException
      */
@@ -43,6 +43,11 @@ public class GeneratePassword {
     public static void createPasswords(int rule) {
         switch (rule) {
             case 1 -> initialsDoBRule();
+            case 2 -> cityRule();
+            case 3 -> petRule();
+            case 4 -> teamRule();
+            case 5 -> movieRule();
+            case 6 -> characterRule();
         }
     }
 
@@ -59,6 +64,71 @@ public class GeneratePassword {
             String doB = testSubject.getDoB();
             String date = doB.replaceAll("/","");
             String password = initials + date;
+            passwords.add(password);
+        }
+    }
+
+    /**
+     * Generate passwords by combining city with a random number
+     */
+    public static void cityRule() {
+        Random random = new Random();
+        for (TestSubject testSubject : list) {
+            String city = testSubject.getCity();
+            String number = String.valueOf(random.nextInt(10000));
+            String password = city + number;
+            passwords.add(password);
+        }
+    }
+
+    /**
+     * Generate passwords by combining pet name with a random number
+     */
+    public static void petRule() {
+        Random random = new Random();
+        for (TestSubject testSubject : list) {
+            String pet = testSubject.getPetName();
+            String number = String.valueOf(random.nextInt(10000));
+            String password = pet + number;
+            passwords.add(password);
+        }
+    }
+
+    /**
+     * Generate passwords by combining team name with a random number
+     */
+    public static void teamRule() {
+        Random random = new Random();
+        for (TestSubject testSubject : list) {
+            String team = testSubject.getTeam();
+            String number = String.valueOf(random.nextInt(10000));
+            String password = team + number;
+            passwords.add(password);
+        }
+    }
+
+    /**
+     * Generate passwords by combining movie name with a random number
+     */
+    public static void movieRule() {
+        Random random = new Random();
+        for (TestSubject testSubject : list) {
+            String movie = testSubject.getMovie();
+            String number = String.valueOf(random.nextInt(10000));
+            String password = movie + number;
+            passwords.add(password);
+        }
+    }
+
+    /**
+     * Generate passwords by combining character name with a random number
+     */
+    public static void characterRule() {
+        Random random = new Random();
+        for (TestSubject testSubject : list) {
+            String character = testSubject.getCharacter();
+            String number = String.valueOf(random.nextInt(10000));
+            String password = character + number;
             passwords.add(password);
         }
     }
@@ -83,6 +153,11 @@ public class GeneratePassword {
         try {
             readTestSubjects("TestSubjects.bin");
             createPasswords(1);
+            createPasswords(2);
+            createPasswords(3);
+            createPasswords(4);
+            createPasswords(5);
+            createPasswords(6);
             write();
         } catch (IOException | ClassNotFoundException exception) {
             exception.printStackTrace();
