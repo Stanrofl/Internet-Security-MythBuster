@@ -14,6 +14,9 @@ import java.util.ArrayList;
 
 public class GeneratePassword {
 
+    private static ArrayList<String> passwords = new ArrayList<>();
+    private static ArrayList<TestSubject> list = new ArrayList<>();
+
     /**
      * Reads in a binary file containing TestSubject objects
      * @param file
@@ -21,8 +24,7 @@ public class GeneratePassword {
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    public static ArrayList<TestSubject> readTestSubjects(String file) throws IOException, ClassNotFoundException {
-        ArrayList<TestSubject> list = new ArrayList<>();
+    public static void readTestSubjects(String file) throws IOException, ClassNotFoundException {
         ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(file));
         try {
             TestSubject testSubject = (TestSubject) inputStream.readObject();
@@ -33,16 +35,21 @@ public class GeneratePassword {
         } catch (EOFException ignored) {
         }
         inputStream.close();
-        return list;
     }
 
     /**
-     * Takes an ArrayList of TestSubjects and use their attributes to create passwords
-     * @param list
-     * @return ArrayList of passwords
+     * Generate passwords based on rule input
      */
-    public static ArrayList<String> createPasswords(ArrayList<TestSubject> list) {
-        ArrayList<String> passwords = new ArrayList<>();
+    public static void createPasswords(int rule) {
+        switch (rule) {
+            case 1 -> initialsDoBRule();
+        }
+    }
+
+    /**
+     * Generate passwords by combining initials of names and date of birth
+     */
+    public static void initialsDoBRule() {
         for (TestSubject testSubject : list) {
             String name = testSubject.getName();
             String[] split = name.split(" ");
@@ -54,15 +61,13 @@ public class GeneratePassword {
             String password = initials + date;
             passwords.add(password);
         }
-        return passwords;
     }
 
     /**
      * Takes in an ArrayList of passwords and write to a text file
-     * @param passwords
      * @throws IOException
      */
-    public static void write(ArrayList<String> passwords) throws IOException {
+    public static void write() throws IOException {
         PrintWriter printWriter = new PrintWriter("TestSubjectPasswords.txt");
         for (String password : passwords) {
             printWriter.println(password);
@@ -76,8 +81,9 @@ public class GeneratePassword {
      */
     public static void main(String[] args) {
         try {
-            ArrayList<String> pwd = createPasswords(readTestSubjects("TestSubjects.bin"));
-            write(pwd);
+            readTestSubjects("TestSubjects.bin");
+            createPasswords(1);
+            write();
         } catch (IOException | ClassNotFoundException exception) {
             exception.printStackTrace();
         }
