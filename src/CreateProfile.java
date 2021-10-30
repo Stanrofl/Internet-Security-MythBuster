@@ -16,6 +16,8 @@ import java.util.Random;
 
 public class CreateProfile {
 
+    private static final int NUMBER_OF_PROFILES = 100;
+
     /**
      * Reads a text file containing attributes and store them in an ArrayList of strings
      * @param file
@@ -45,7 +47,7 @@ public class CreateProfile {
         Random random = new Random();
         int size1 = firstNames.size();
         int size2 = lastNames.size();
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < NUMBER_OF_PROFILES; i++) {
             int index1 = random.nextInt(size1);
             int index2 = random.nextInt(size2);
             String firstName = firstNames.get(index1);
@@ -110,6 +112,11 @@ public class CreateProfile {
         try {
             ArrayList<String> firstNames = readFile("first_name.txt");
             ArrayList<String> lastNames = readFile("last_name.txt");
+            ArrayList<String> movies = readFile("movie.txt");
+            ArrayList<String> fictionalNames = readFile("fictional_name.txt");
+            ArrayList<String> sportsTeams = readFile("sports_team.txt");
+            ArrayList<String> petNames = readFile("pet_name.txt");
+            ArrayList<String> cities = readFile("city.txt");
             ArrayList<TestSubject> list = createProfile(createName(firstNames,lastNames));
             write(list);
         } catch (IOException exception) {
