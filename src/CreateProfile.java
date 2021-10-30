@@ -126,7 +126,7 @@ public class CreateProfile {
      */
     public static void main(String[] args) {
         try {
-            ArrayList<TestSubject> list = createProfile(createName(readFirstName("fnames.txt"),readLastName("lnames.txt")));
+            ArrayList<TestSubject> list = createProfile(createName(readFirstName("first_name.txt"),readLastName("last_name.txt")));
             write(list);
         } catch (IOException exception) {
             exception.getMessage();
