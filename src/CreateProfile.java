@@ -107,25 +107,25 @@ public class CreateProfile {
                 break;
             case "movie":
                 for (TestSubject testSubject : testSubjects) {
-                    int index = random.nextInt(testSubjects.size());
+                    int index = random.nextInt(attributes.size());
                     testSubject.setMovie(attributes.get(index));
                 }
                 break;
             case "fictional_name":
                 for (TestSubject testSubject : testSubjects) {
-                    int index = random.nextInt(testSubjects.size());
+                    int index = random.nextInt(attributes.size());
                     testSubject.setCharacter(attributes.get(index));
                 }
                 break;
             case "pet_name":
                 for (TestSubject testSubject : testSubjects) {
-                    int index = random.nextInt(testSubjects.size());
+                    int index = random.nextInt(attributes.size());
                     testSubject.setPetName(attributes.get(index));
                 }
                 break;
             case "sports_team":
                 for (TestSubject testSubject : testSubjects) {
-                    int index = random.nextInt(testSubjects.size());
+                    int index = random.nextInt(attributes.size());
                     testSubject.setTeam(attributes.get(index));
                 }
                 break;
@@ -161,6 +161,10 @@ public class CreateProfile {
             ArrayList<String> cities = readFile("city.txt");
             ArrayList<TestSubject> list = createProfile(createName(firstNames,lastNames));
             addAttribute(list,"city",cities);
+            addAttribute(list,"pet_name",petNames);
+            addAttribute(list,"sports_team",sportsTeams);
+            addAttribute(list,"movie",movies);
+            addAttribute(list,"fictional_name",fictionalNames);
             write(list);
         } catch (IOException exception) {
             exception.printStackTrace();
