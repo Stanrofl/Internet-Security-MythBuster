@@ -73,15 +73,13 @@ public class GeneratePassword {
     /**
      * Main method - starting point of program
      * @param args
-     * @throws IOException
-     * @throws ClassNotFoundException
      */
     public static void main(String[] args) {
         try {
             ArrayList<String> pwd = createPasswords(readTestSubjects("TestSubjects.bin"));
             write(pwd);
         } catch (IOException | ClassNotFoundException exception) {
-            exception.getMessage();
+            exception.printStackTrace();
         }
     }
 }

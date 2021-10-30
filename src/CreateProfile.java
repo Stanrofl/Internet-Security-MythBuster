@@ -122,14 +122,13 @@ public class CreateProfile {
     /**
      * Main method - starting point of program
      * @param args
-     * @throws IOException
      */
     public static void main(String[] args) {
         try {
             ArrayList<TestSubject> list = createProfile(createName(readFirstName("first_name.txt"),readLastName("last_name.txt")));
             write(list);
         } catch (IOException exception) {
-            exception.getMessage();
+            exception.printStackTrace();
         }
     }
 }
