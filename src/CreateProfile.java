@@ -17,37 +17,20 @@ import java.util.Random;
 public class CreateProfile {
 
     /**
-     * Reads a text file containing first names and store them in an ArrayList
+     * Reads a text file containing attributes and store them in an ArrayList of strings
      * @param file
      * @return an ArrayList of first names
      * @throws IOException
      */
-    public static ArrayList<String> readFirstName(String file) throws IOException {
-        ArrayList<String> firstNames = new ArrayList<>();
+    public static ArrayList<String> readFile(String file) throws IOException {
+        ArrayList<String> arrayList = new ArrayList<>();
         BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
         String line = bufferedReader.readLine();
         while (line != null) {
-            firstNames.add(line);
+            arrayList.add(line);
             line = bufferedReader.readLine();
         }
-        return firstNames;
-    }
-
-    /**
-     * Reads a text file containing last names and store them in an ArrayList
-     * @param file
-     * @return an ArrayList of last names
-     * @throws IOException
-     */
-    public static ArrayList<String> readLastName(String file) throws IOException {
-        ArrayList<String> lastNames = new ArrayList<>();
-        BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
-        String line = bufferedReader.readLine();
-        while (line != null) {
-            lastNames.add(line);
-            line = bufferedReader.readLine();
-        }
-        return lastNames;
+        return arrayList;
     }
 
     /**
@@ -125,7 +108,9 @@ public class CreateProfile {
      */
     public static void main(String[] args) {
         try {
-            ArrayList<TestSubject> list = createProfile(createName(readFirstName("first_name.txt"),readLastName("last_name.txt")));
+            ArrayList<String> firstNames = readFile("first_name.txt");
+            ArrayList<String> lastNames = readFile("last_name.txt");
+            ArrayList<TestSubject> list = createProfile(createName(firstNames,lastNames));
             write(list);
         } catch (IOException exception) {
             exception.printStackTrace();
