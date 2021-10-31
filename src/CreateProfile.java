@@ -168,6 +168,8 @@ public class CreateProfile {
     public static void main(String[] args) {
         try {
             getProfileCount();
+
+            // specify the text files to be read
             ArrayList<String> firstNames = readFile("first_name.txt");
             ArrayList<String> lastNames = readFile("last_name.txt");
             ArrayList<String> movies = readFile("movie.txt");
@@ -176,11 +178,14 @@ public class CreateProfile {
             ArrayList<String> petNames = readFile("pet_name.txt");
             ArrayList<String> cities = readFile("city.txt");
             ArrayList<TestSubject> list = createProfile(createName(firstNames,lastNames));
+
+            // specify the attributes to be added
             addAttribute(list,"city",cities);
             addAttribute(list,"pet_name",petNames);
             addAttribute(list,"sports_team",sportsTeams);
             addAttribute(list,"movie",movies);
             addAttribute(list,"fictional_name",fictionalNames);
+
             write(list);
         } catch (IOException exception) {
             exception.printStackTrace();

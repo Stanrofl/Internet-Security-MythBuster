@@ -152,12 +152,15 @@ public class GeneratePassword {
     public static void main(String[] args) {
         try {
             readTestSubjects("TestSubjects.bin");
+
+            // specify rules to be used in password generation
             createPasswords(1);
             createPasswords(2);
             createPasswords(3);
             createPasswords(4);
             createPasswords(5);
             createPasswords(6);
+
             write();
         } catch (IOException | ClassNotFoundException exception) {
             exception.printStackTrace();
