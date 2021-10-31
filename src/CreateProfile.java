@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  * Class: CreateProfile
@@ -16,7 +17,20 @@ import java.util.Random;
 
 public class CreateProfile {
 
-    private static final int NUMBER_OF_PROFILES = 100;
+    private static int profileCount;
+
+    /**
+     * Ask user for input regarding how many profiles are to be generated
+     */
+    public static void getProfileCount() {
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter number of profiles to be generated:");
+        profileCount = in.nextInt();
+        if (profileCount <= 0) {
+            System.out.println("Invalid input, please enter an integer");
+            getProfileCount();
+        }
+    }
 
     /**
      * Reads a text file containing attributes and store them in an ArrayList of strings
@@ -47,7 +61,7 @@ public class CreateProfile {
         Random random = new Random();
         int size1 = firstNames.size();
         int size2 = lastNames.size();
-        for (int i = 0; i < NUMBER_OF_PROFILES; i++) {
+        for (int i = 0; i < profileCount; i++) {
             int index1 = random.nextInt(size1);
             int index2 = random.nextInt(size2);
             String firstName = firstNames.get(index1);
@@ -153,6 +167,7 @@ public class CreateProfile {
      */
     public static void main(String[] args) {
         try {
+            getProfileCount();
             ArrayList<String> firstNames = readFile("first_name.txt");
             ArrayList<String> lastNames = readFile("last_name.txt");
             ArrayList<String> movies = readFile("movie.txt");
