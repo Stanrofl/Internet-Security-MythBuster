@@ -21,7 +21,7 @@ public class CreateProfile {
     /**
      * Reads a text file containing attributes and store them in an ArrayList of strings
      * @param file
-     * @return an ArrayList of first names
+     * @return an ArrayList of attributes
      * @throws IOException
      */
     public static ArrayList<String> readFile(String file) throws IOException {
@@ -60,6 +60,7 @@ public class CreateProfile {
 
     /**
      * Randomly generates dates between 1970/01/01 and 2000/12/31
+     * (Note: For simplicity, only generates day of month up to 28)
      * @param n
      * @return an ArrayList of dates
      */
