@@ -138,7 +138,7 @@ public class GeneratePassword {
      * @throws IOException
      */
     public static void write() throws IOException {
-        PrintWriter printWriter = new PrintWriter("TestSubjectPasswords.txt");
+        PrintWriter printWriter = new PrintWriter("Dictionary.txt");
         for (String password : passwords) {
             printWriter.println(password);
         }
