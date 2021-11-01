@@ -25,3 +25,4 @@ hs_err_pid*
 java/util/
 *.txt
 *.bin
+*.iml
